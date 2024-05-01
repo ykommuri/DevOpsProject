@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: venky-ns
+  namespace: yash-ns
   labels:
     app: nginx
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: venky2821/kubernetesimage:latest
+          image: ykommuri/myimage:latest
           ports:
             - containerPort: 80
         - name: redis
@@ -29,7 +29,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginx-svc
-  namespace: venky-ns
+  namespace: yash-ns
   labels:
     app: nginx
 spec:
@@ -45,7 +45,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginx
-  namespace: venky-ns
+  namespace: yash-ns
   annotations:
     metallb.universe.tf/address-pool: first-pool
 spec:
