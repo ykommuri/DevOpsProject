@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
-      IMAGE_NAME: kubernetesimage
+      IMAGE_NAME: myimage
       IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
       CLUSTER_NAME: kubernetes-admin@kubernetes
       RESOURSE_GROUP: venkatesh-rg
