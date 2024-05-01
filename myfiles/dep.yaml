@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: venky-ns
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: venky2821/kubernetesimage:latest
+          ports:
+            - containerPort: 80
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6378
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-svc
+  namespace: venky-ns
+  labels:
+    app: nginx
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+  type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: venky-ns
+  annotations:
+    metallb.universe.tf/address-pool: first-pool
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
