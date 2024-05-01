@@ -29,7 +29,7 @@ jobs:
 
     - name: Login to Docker Hub
       run: |
-        echo "${{ secrets.DOCKER_PASSWORD_VENKY }}" | docker login -u $DOCKER_REPOSITORY --password-stdin
+        echo "${{ secrets.MY_Docker_passcode }}" | docker login -u $DOCKER_REPOSITORY --password-stdin
   
     - name: Push Image to Docker Hub
       run: |
