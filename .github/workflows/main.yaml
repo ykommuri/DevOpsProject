@@ -1,10 +1,10 @@
 
-name: build and deploy
+name: Build image and Deploy
 
 on:
   push:
     branches: [main]
-    paths: .github/workflows/main.yml
+    paths: .github/workflows/main.yaml
   pull_request:
     branches:  none
   workflow_dispatch:
@@ -13,11 +13,11 @@ jobs:
   build-deploy-aks:
     runs-on: ubuntu-latest
     env:
-      DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
+      DOCKER_REPOSITORY: ykommuri # name of Docker Hub ID
       IMAGE_NAME: myimage
       IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
-      CLUSTER_NAME: kubernetes-admin@kubernetes
-      RESOURSE_GROUP: venkatesh-rg
+      
+      RESOURSE_GROUP: yeshwanth-rg
 
     steps:
     - name: Git Checkout
