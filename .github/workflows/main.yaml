@@ -41,5 +41,5 @@ jobs:
           export KUBECONFIG=kubeconfig
           kubectl cluster-info
           kubectl create namespace yash-ns
-          kubectl apply -f myapp/dep.yaml 
+          kubectl apply -f myfiles/dep.yaml 
           kubectl get pods
