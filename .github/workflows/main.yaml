@@ -34,6 +34,12 @@ jobs:
     - name: Push Image to Docker Hub
       run: |
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
+    - name: terraform apply
+      run: | 
+           terraform init myfiles/terraform
+           terraform plan
+           terraform apply -auto-approve
+           terraform destroy -auto-approve
            
     - name: kubernetes deploy and pods
       run: |
