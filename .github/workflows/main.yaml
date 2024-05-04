@@ -16,6 +16,10 @@ jobs:
       DOCKER_REPOSITORY: ykommuri # name of Docker Hub ID
       IMAGE_NAME: myimage
       IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       
       RESOURSE_GROUP: yeshwanth-rg
 
