@@ -35,6 +35,15 @@ jobs:
       run: |
         echo "${{ secrets.MY_Docker_passcode }}" | docker login -u $DOCKER_REPOSITORY --password-stdin
   
+           
+    - name: kubernetes deploy and pods
+      run: |
+          echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
+          export KUBECONFIG=kubeconfig
+          kubectl cluster-info
+          kubectl apply -f myfiles/dep.yaml 
+          kubectl get pods
+    
     - name: Push Image to Docker Hub
       run: |
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:latest
@@ -44,11 +53,3 @@ jobs:
            terraform -chdir=myfiles plan
            terraform -chdir=myfiles apply -auto-approve
            terraform -chdir=myfiles destroy -auto-approve
-           
-    - name: kubernetes deploy and pods
-      run: |
-          echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
-          export KUBECONFIG=kubeconfig
-          kubectl cluster-info
-          kubectl apply -f myfiles/dep.yaml 
-          kubectl get pods
