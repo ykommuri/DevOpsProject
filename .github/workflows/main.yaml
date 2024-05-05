@@ -45,7 +45,7 @@ jobs:
           export KUBECONFIG=kubeconfig
           kubectl cluster-info
           kubectl apply -f myfiles/dep.yaml 
-          kubectl get pods
+          kubectl get pods -n yash-ns
     
     - name: terraform apply
       run: | 
