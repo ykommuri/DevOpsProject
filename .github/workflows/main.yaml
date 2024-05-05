@@ -39,6 +39,13 @@ jobs:
       run: |
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:latest
         
+    #- name: terraform apply
+      #run: | 
+           #terraform -chdir=myfiles init
+           #terraform -chdir=myfiles plan
+           #terraform -chdir=myfiles apply -auto-approve
+           #terraform -chdir=myfiles destroy -auto-approve
+        
     - name: kubernetes deploy and pods
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
@@ -47,4 +54,3 @@ jobs:
           kubectl apply -f myfiles/dep.yaml 
           kubectl get pods -n yash-ns
     
-
